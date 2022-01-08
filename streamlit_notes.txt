@@ -1,0 +1,44 @@
+﻿
+Deployment of Streamlit in Heroku Cloud Application Platform
+
+* Create account on github & Heroku 
+ *Install the libararies of github& heroku
+           $sudo apt-get install git
+           $sudo snap install --classic heroku
+
+
+Step1:Create a Directory  and virtual environment(pipenv)
+Step2:Create a repository in github and clone the repository
+            $git clone “Project_name”(repository name)
+(After cloning the repository you can able to view the directory.
+Then change to the cloned directory) 
+Step3:Create a streamlit code in .py file extension
+Step4:Create a setup.sh file
+          $gedit setup.sh
+  #Copy the code below
+	      mkdir -p ~/.streamlit/
+	      echo "\
+              [server]\n\
+              headless = true\n\
+              port = $PORT\n\
+              enableCORS = false\n\
+              \n\
+              " > ~/.streamlit/config.toml
+Step5:Create a Procfile
+#Copy the code
+       web: sh setup.sh && streamlit run eda.py
+Step6:Save all the libraries into a text file
+          $pipreqs(pipenv run pip freeze > requirements.txt)
+Step7:Push the files into the github using command prompt with following steps below:
+         $git add *
+         $git status
+         $git commit -m “project_name”
+	 $git push( git push origin -f)
+#Refresh the github account and you can view that files are uploaded
+Step8:Heroku login
+#login with username&password
+Step 9:Create project name in heroku 
+        $heroku create icfoss
+Step10:Push to heroku from git
+         $git push heroku
+#heroku git:remote -a
